@@ -1,0 +1,187 @@
+# IncreaseTag
+
+> 涨跌组件
+
+``` js
+export interface IIncreaseTag {
+  // 原始值
+  value?: string | number
+  // 显示'+'|'-'
+  hasPrefix?: boolean
+  // 显示'%'|'亿'等单位后缀
+  hasPostfix?: boolean
+  // % 小数点位数 eg: 12.xx%
+  digits?: number
+  // 是否删除小数点末尾的 0
+  delZero?: boolean
+  // 四舍五入
+  isRound?: boolean
+  // 千分位
+  kSign?: boolean
+  // 默认空值显示文案
+  defaultEmptyText?: string
+  // 是否显示红涨绿跌
+  hasColor?: boolean
+  // 红涨绿跌相对于谁比较
+  diffTarget?: number
+  // 校验 0 返回 defaultEmptyText
+  isCheckZero?: boolean
+  // 默认是需要百分比计算
+  needPercentCalc?: boolean
+  //会添加个父级 span class 为 tag-wrap-text-buy_up_color | tag-wrap-text-sell_down_color | 'tag-wrap'
+  hasFather?: boolean
+  left?: ReactNode
+  right?: ReactNode
+}
+const defaultProps = {
+  hasColor: true,
+  hasPrefix: true,
+  hasPostfix: false,
+  isRound: true,
+  kSign: false,
+  needPercentCalc: false,
+  delZero: true,
+  digits: 10,
+  defaultEmptyText: '--',
+  diffTarget: 0,
+}
+```
+
+```js
+import { IncreaseTag } from '@nbit/react'
+```
+
+import { IncreaseTag } from '../index'
+
+## 普通用法
+```js
+<IncreaseTag value={'-0.00000000008'} />
+```
+
+<IncreaseTag value={'-0.00000000008'} />
+
+```js
+<IncreaseTag value={66666.8888000000000000} />
+```
+
+<IncreaseTag value={66666.8888000000000000} />
+
+```js
+<IncreaseTag value={-66666.8888000000000000} />
+```
+
+<IncreaseTag value={-66666.8888000000000000} />
+
+## 显示前缀符号 `hasPrefix`
+
+```js
+<IncreaseTag hasPrefix={true} value={66666.8888} />
+```
+
+<IncreaseTag hasPrefix={true} value={66666.8888} />
+
+```js
+<IncreaseTag hasPrefix={false} value={66666.8888} />
+```
+
+<IncreaseTag hasPrefix={false} value={66666.8888} />
+
+## 显示后缀符号、处理百分比、亿等 `needPercentCalc`
+
+```js
+<IncreaseTag needPercentCalc hasPostfix value={66666.8888} />
+```
+
+<IncreaseTag needPercentCalc hasPostfix value={66666.8888} />
+
+```js
+<IncreaseTag needPercentCalc hasPostfix value={66666.8888} right={'亿'}/>
+```
+
+<IncreaseTag value={66666.8888} right={'亿'}/>
+
+## 小数点位数 `digits`
+
+```js
+<IncreaseTag digits={3}  value={66666.8888} />
+```
+
+<IncreaseTag digits={3}  value={66666.8888} />
+
+```js
+<IncreaseTag digits={2}  value={66666.8888} />
+```
+
+<IncreaseTag digits={2}  value={66666.8888} />
+
+## 四舍五入 `isRound`
+
+```js
+<IncreaseTag digits={2}  isRound={false} value={66666.8888} />
+```
+
+<IncreaseTag digits={2}  isRound={false} value={66666.8888} />
+
+```js
+<IncreaseTag digits={2}  isRound={true} value={66666.8888} />
+```
+
+<IncreaseTag digits={2}  isRound={true} value={66666.8888} />
+
+## 千分位 `kSign`
+
+```js
+<IncreaseTag kSign={false} value={66666.8888} />
+```
+
+<IncreaseTag kSign={false} value={66666.8888} />
+
+```js
+<IncreaseTag kSign={true} value={66666.8888} />
+```
+
+<IncreaseTag kSign={true} value={66666.8888} />
+
+## 默认空值显示文案 `defaultEmptyText`
+
+```js
+<IncreaseTag defaultEmptyText="xx" value="--" />
+```
+
+<IncreaseTag defaultEmptyText="xx" value="--" />
+
+```js
+<IncreaseTag value="--" />
+```
+
+<IncreaseTag value="--" />
+
+## 是否显示红涨绿跌 `hasColor`
+
+```js
+<IncreaseTag value={66666.8888} />
+```
+
+<IncreaseTag value={66666.8888} />
+
+```js
+<IncreaseTag hasColor={false} value={66666.8888} />
+```
+
+<IncreaseTag hasColor={false} value={66666.8888} />
+
+## 红涨绿跌比对目标 `diffTarget`
+
+默认和 0 比较
+
+```js
+<IncreaseTag value={66666.8888} />
+```
+
+<IncreaseTag value={66666.8888} />
+
+```js
+<IncreaseTag diffTarget={9999999} value={66666.8888} />
+```
+
+<IncreaseTag diffTarget={9999999} value={66666.8888} />

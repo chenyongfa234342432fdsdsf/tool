@@ -1,0 +1,16 @@
+node_modules
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
+*.log*
+.tmp*
+*_cache
+/api
+/lib
+/coverage
+package-lock.json
+.umi*
+docs/dist
+src/yapi
+src/meta
+sample/yapi
